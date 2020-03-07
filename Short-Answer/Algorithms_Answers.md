@@ -2,7 +2,7 @@
 
 ## Exercise I
 
-a)
+a) We have a single loop that appears would only run 2 times, so the runtime complexity would be O(n).
 
 
 b)
@@ -11,5 +11,3 @@ b)
 c)
 
 ## Exercise II
-
-
