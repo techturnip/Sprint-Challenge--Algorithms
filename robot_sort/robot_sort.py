@@ -97,7 +97,51 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+
+        # Solve by moving right swapping small items for bigger items
+        # and moving left swapping big items for smaller items
+        # handling for the None value that will make it's way into the list
+
+        # drop None and pickup item
+        self.swap_item()
+        # turn the light on and start loop
+        self.set_light_on()
+        # run while the light is on
+        while self.light_is_on():
+            # set the light off here so that when we are done sorting
+            # the loop will break
+            self.set_light_off()
+
+            # start moving right through, comparing and swapping cards
+            while self.can_move_right():
+                # move robot to the right
+                self.move_right()
+
+                # if the item in hand is smaller than the item in front of the bot
+                # swap item so that the bigger item is in hand
+                if self.compare_item() < 0:
+                    self.swap_item()
+                    self.set_light_on()
+
+
+            # we have finished moving right, we want to move back through
+            # the cards and move smaller cards to the left
+            while self.compare_item() is not None:
+                # if item in hand is bigger than the item in front of the bot
+                # swap item so that the smaller item is in hand
+                if self.compare_item() > 0:
+                    self.swap_item()
+                    self.set_light_on()
+
+                # move robot to the left
+                self.move_left()
+
+            # handle None value:
+            self.swap_item()
+
+            if self.light_is_on():
+                self.move_right()
+                self.swap_item()
 
 
 if __name__ == "__main__":
